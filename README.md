@@ -1,6 +1,6 @@
 # HLouge PhysicsEngine
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![Language](https://img.shields.io/badge/language-C-orange.svg)
 ![Build](https://img.shields.io/badge/build-CMake-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
@@ -36,7 +36,7 @@ sudo apt-get update
 sudo apt-get install build-essential cmake libsdl2-dev cppcheck
 ```
 
-**Build & Run**
+# Build & Run
 
 1. Clone the repository
 
@@ -61,10 +61,10 @@ cmake --build build
 3. Run the Simulation
 
 The executable and the config.txt are automatically placed in the build/ directory.
-Bash
 
+```bash
 ./build/Engine
-
+```
 **Configuration**
 
 You can tweak the simulation without recompiling by editing the build/config.txt file:
@@ -89,6 +89,26 @@ cpack
 ```
 
 This will generate a portable archive (e.g., Physics_Engine-1.0.0-Linux.zip) containing the binary and configuration.
+
+**Static Code Analysis**
+
+To ensure code quality and prevent memory leaks, this project integrates **Cppcheck**. The analysis is automatically hooked into the CMake build system.
+
+### Prerequisites
+You need to have `cppcheck` installed on your machine.
+```bash
+sudo apt-get install cppcheck
+```
+How it works
+
+Cppcheck runs automatically every time you compile the project. If it detects any bugs, undefined behaviors, or style issues, it will report them directly in your terminal output during the build process.
+Bash
+
+# The analysis runs during this step:
+```bash
+cmake --build build
+```
+Note: If Cppcheck is not found on your system, CMake will simply skip this step without failing.
 
 **Author**
 
