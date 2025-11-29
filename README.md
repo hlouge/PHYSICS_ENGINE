@@ -1,70 +1,95 @@
-**HLouge PhysicsEngine**
+# HLouge PhysicsEngine
 
-Version 1.0.0
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Language](https://img.shields.io/badge/language-C-orange.svg)
+![Build](https://img.shields.io/badge/build-CMake-green.svg)
+![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A simple 2D physics engine in C, built with CMake and using SDL2 for graphics rendering.
-This project was created in parralel of assignements from Ecole des Mines Saint-Etienne CS Major.
+A lightweight 2D physics engine written in **C**, built with **CMake**, and utilizing **SDL2** for graphics rendering. 
+Currently features a multi-particle fireworks simulation with gravity, collisions, and visual trails.
 
-**Features**
+> *This project was created in parallel with assignments from the CS Major at **École des Mines de Saint-Étienne**.*
 
-Simulation of a physical object (circle) with gravity.
-Collision and bounce on the window floor.
-Simple graphics rendering via the SDL2 library.
-Project fully managed by CMake (compilation, dependency management, packaging).
+# Features
 
-**Prerequisites**
+* **Particle System**: Simulation of 100+ concurrent particles (Fireworks demo).
+* **Physics**: Gravity implementation, momentum conservation, and boundary collisions (floor and walls).
+* **Visual Effects**: Motion trails for each particle using alpha blending.
+* **Data-Driven**: Key parameters (Gravity, Dimensions, Start Position) are loadable via a `config.txt` file.
+* **Robust Build**: Fully managed by **CMake** with **Cppcheck** static analysis integration.
+* **Packaging**: Automatic generation of `.zip` or `.tar.gz` release packages via CPack.
 
-Before compiling, you must have the following tools installed on your system:
+# Prerequisites
 
-    - cmake (version 3.10 or higher)
+Before compiling, ensure you have the following installed:
 
-    - A C compiler (e.g., gcc)
+* **CMake** (version 3.10+)
+* **GCC** or any standard C compiler
+* **Make**
+* **SDL2 Library** (Development headers)
+* **Cppcheck** (Optional, for static analysis)
 
-    - make 
+# Installing Dependencies (Debian/Ubuntu)
 
-    - The SDL2 library (development version)
-
-**Installing Prerequisites**
-
-On Debian/Ubuntu:
-
+```bash
 sudo apt-get update
-sudo apt-get install build-essential cmake libsdl2-dev
+sudo apt-get install build-essential cmake libsdl2-dev cppcheck
+```
 
-Usage Guide
+**Build & Run**
 
-1. How to Build
-
-# 1. Clone the repository (if not already done)
-> git clone [git clone https://github.com.hlouge/PHYSICS_ENGINE]
-> cd PhysicsEngine
-
-# 2. Create a build directory and configure the project
-
->cmake -B build
-
-# 3. Launch the compilation
-
->cmake --build build
+1. Clone the repository
 
 
-At the end of this process, an executable named Engine will be created in the build/ directory.
+```bash
+git clone [https://github.com/hlouge/PHYSICS_ENGINE.git](https://github.com/hlouge/PHYSICS_ENGINE.git)
+cd PHYSICS_ENGINE
+```
 
-2. How to Run
+2. Build the project
 
-Once the build is successful, you can run the simulation:
+We use an "out-of-source" build to keep directories clean.
+
+```bash
+# Generate build files in 'build/' directory
+cmake -B build
+
+# Compile the executable
+cmake --build build
+```
+
+3. Run the Simulation
+
+The executable and the config.txt are automatically placed in the build/ directory.
+Bash
 
 ./build/Engine
 
-4. Packaging
+**Configuration**
 
-This project is configured with CPack to generate installation packages (.zip or .tar.gz).
+You can tweak the simulation without recompiling by editing the build/config.txt file:
+Ini, TOML
 
-# 1. Make sure you have compiled the project (see step 1)
-# 2. Change to the build directory
->cd build
+POS_X 400.0     # Initial X source position
+POS_Y 300.0     # Initial Y source position
+WIN_W 800       # Window Width
+WIN_H 600       # Window Height
+GRAVITY 9.81    # Gravity force
+RADIUS 4        # Particle radius
 
-# 3. Run CPack
->cpack
+Press SPACE during the simulation to restart the explosion.
 
-CPack will generate an archive (e.g., PhysicsEngine-1.0.0-Linux.zip) in the build/ directory. This archive contains the Engine executable, ready for distribution.
+**Packaging**
+
+To distribute the engine as a standalone archive:
+
+```bash
+cd build
+cpack
+```
+
+This will generate a portable archive (e.g., Physics_Engine-1.0.0-Linux.zip) containing the binary and configuration.
+
+**Author**
+
+HLouge Student at École des Mines de Saint-Étienne.

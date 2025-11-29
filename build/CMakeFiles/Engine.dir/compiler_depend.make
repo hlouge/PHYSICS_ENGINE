@@ -66,6 +66,7 @@ CMakeFiles/Engine.dir/src/main.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/main
   /usr/include/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/time.h \
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
   /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
@@ -94,6 +95,7 @@ CMakeFiles/Engine.dir/src/main.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/main
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/timesize.h \
   /usr/include/x86_64-linux-gnu/bits/types.h \
@@ -111,8 +113,10 @@ CMakeFiles/Engine.dir/src/main.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/main
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
   /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
@@ -228,7 +232,29 @@ CMakeFiles/Engine.dir/src/main.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/main
 
 CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c \
   /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.h \
-  /usr/include/stdc-predef.h
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/math.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h
 
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/xsavesintrin.h:
@@ -305,8 +331,6 @@ CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/p
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vp2intersectvlintrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlintrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlbwintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/rdseedintrin.h:
@@ -350,6 +374,8 @@ CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/p
 /usr/lib/gcc/x86_64-linux-gnu/13/include/rtmintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/amxbf16intrin.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxneconvertintrin.h:
 
@@ -453,21 +479,35 @@ CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/p
 
 /usr/include/SDL2/SDL_misc.h:
 
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
 /usr/include/SDL2/SDL.h:
 
+/usr/include/time.h:
+
 /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/bmi2intrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/adxintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /usr/include/SDL2/SDL_thread.h:
 
@@ -492,12 +532,6 @@ CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/p
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/SDL2/SDL_power.h:
-
-/usr/include/SDL2/SDL_video.h:
-
-/usr/include/SDL2/SDL_rect.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/SDL2/SDL_clipboard.h:
 
@@ -657,9 +691,15 @@ CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/p
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+/usr/include/SDL2/SDL_video.h:
 
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+/usr/include/SDL2/SDL_rect.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/SDL2/SDL_blendmode.h:
 
@@ -674,9 +714,3 @@ CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/p
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:

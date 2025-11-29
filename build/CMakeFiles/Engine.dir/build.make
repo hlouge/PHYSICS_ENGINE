@@ -73,7 +73,7 @@ CMakeFiles/Engine.dir/src/main.c.o: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/src/main.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c
 CMakeFiles/Engine.dir/src/main.c.o: CMakeFiles/Engine.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hlouge/Desktop/PHYSICS_ENGINE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Engine.dir/src/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Engine.dir/src/main.c.o -MF CMakeFiles/Engine.dir/src/main.c.o.d -o CMakeFiles/Engine.dir/src/main.c.o -c /home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c
+	$(CMAKE_COMMAND) -E __run_co_compile --cppcheck="/usr/bin/cppcheck;--enable=warning,performance,portability,style;--suppress=missingIncludeSystem" --source=/home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c -- /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Engine.dir/src/main.c.o -MF CMakeFiles/Engine.dir/src/main.c.o.d -o CMakeFiles/Engine.dir/src/main.c.o -c /home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c
 
 CMakeFiles/Engine.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Engine.dir/src/main.c.i"
@@ -87,7 +87,7 @@ CMakeFiles/Engine.dir/src/physics.c.o: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/src/physics.c.o: /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c
 CMakeFiles/Engine.dir/src/physics.c.o: CMakeFiles/Engine.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hlouge/Desktop/PHYSICS_ENGINE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Engine.dir/src/physics.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Engine.dir/src/physics.c.o -MF CMakeFiles/Engine.dir/src/physics.c.o.d -o CMakeFiles/Engine.dir/src/physics.c.o -c /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c
+	$(CMAKE_COMMAND) -E __run_co_compile --cppcheck="/usr/bin/cppcheck;--enable=warning,performance,portability,style;--suppress=missingIncludeSystem" --source=/home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c -- /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Engine.dir/src/physics.c.o -MF CMakeFiles/Engine.dir/src/physics.c.o.d -o CMakeFiles/Engine.dir/src/physics.c.o -c /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c
 
 CMakeFiles/Engine.dir/src/physics.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Engine.dir/src/physics.c.i"
@@ -109,6 +109,7 @@ Engine: CMakeFiles/Engine.dir/src/main.c.o
 Engine: CMakeFiles/Engine.dir/src/physics.c.o
 Engine: CMakeFiles/Engine.dir/build.make
 Engine: /usr/lib/x86_64-linux-gnu/libSDL2.so
+Engine: /usr/lib/x86_64-linux-gnu/libm.so
 Engine: CMakeFiles/Engine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hlouge/Desktop/PHYSICS_ENGINE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Engine.dir/link.txt --verbose=$(VERBOSE)

@@ -278,6 +278,12 @@ CPACK_SOURCE_TZ:BOOL=ON
 //Enable to build ZIP source packages
 CPACK_SOURCE_ZIP:BOOL=OFF
 
+//Path to a program.
+CPPCHECK_EXE:FILEPATH=/usr/bin/cppcheck
+
+//Path to a library.
+LIB_MATH:FILEPATH=/usr/lib/x86_64-linux-gnu/libm.so
+
 //Value Computed by CMake
 Physics_Engine_BINARY_DIR:STATIC=/home/hlouge/Desktop/PHYSICS_ENGINE/build
 
