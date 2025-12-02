@@ -1,47 +1,36 @@
-# Minimal CMake version required
 cmake_minimum_required(VERSION 3.10)
-
-# 1. Project and Version
 project(Physics_Engine VERSION 1.0.0)
 
-# 2. Dependency
-# - SDL2
+# --- DEPENDENCIES ---
 find_package(SDL2 REQUIRED)
-# - Math library (pour sqrt, etc.)
 find_library(LIB_MATH m)
-
-# 3. Compiling
-add_executable(Engine
-    src/main.c
-    src/physics.c
-)
-
-# --- STATIC CODE ANALYSIS SETUP (CPPCHECK) ---
-# On cherche si l'outil est installé sur la machine
 find_program(CPPCHECK_EXE cppcheck)
 
+# --- 1. LIBRAIRIE PHYSIQUE (Core logic) ---
+# On crée une librairie statique qui contient juste la logique, sans le main
+add_library(PhysicsCore src/physics.c)
+target_link_libraries(PhysicsCore ${LIB_MATH})
+
+# --- 2. EXECUTABLE (Simulation visuelle) ---
+add_executable(Engine src/main.c)
+target_link_libraries(Engine PRIVATE PhysicsCore SDL2::SDL2)
+
+# --- 3. ANALYSE STATIQUE ---
 if(CPPCHECK_EXE)
-    message(STATUS "Static Code Analysis enabled: Cppcheck found at ${CPPCHECK_EXE}")
-    
-    # On configure les règles d'analyse :
-    # --enable=... : Active les avertissements, les conseils de performance, le style, etc.
-    # --suppress=... : Ignore les erreurs liées aux fichiers système (comme SDL2 qu'on ne contrôle pas)
-    # --inconclusive : Pour aller plus loin (optionnel)
-    set_target_properties(Engine PROPERTIES
-        C_CPPCHECK "${CPPCHECK_EXE};--enable=warning,performance,portability,style;--suppress=missingIncludeSystem"
-    )
-else()
-    message(WARNING "Cppcheck not found! Please install it (sudo apt install cppcheck)")
+    set_target_properties(Engine PROPERTIES C_CPPCHECK "${CPPCHECK_EXE};--enable=warning,performance,portability,style;--suppress=missingIncludeSystem")
 endif()
-# ---------------------------------------------
 
-# 4. Linking
-# - Linking SDL2 and Math library
-target_link_libraries(Engine PRIVATE SDL2::SDL2 ${LIB_MATH})
+# --- 4. TESTS UNITAIRES (New!) ---
+enable_testing()
 
-# 5. Install configuration (Copie config.txt automatiquement)
+# On crée un exécutable dédié aux tests
+add_executable(UnitTests tests/test_physics.c)
+target_link_libraries(UnitTests PRIVATE PhysicsCore)
+
+# On enregistre le test dans CTest
+add_test(NAME PhysicsLogicTest COMMAND UnitTests)
+
+# --- INSTALL & PACKAGING ---
 configure_file(${CMAKE_SOURCE_DIR}/config.txt ${CMAKE_BINARY_DIR}/config.txt COPYONLY)
-
-# 6. Install libraries
-install (TARGETS Engine DESTINATION bin)
+install(TARGETS Engine DESTINATION bin)
 include(CPack)

@@ -284,6 +284,9 @@ CPPCHECK_EXE:FILEPATH=/usr/bin/cppcheck
 //Path to a library.
 LIB_MATH:FILEPATH=/usr/lib/x86_64-linux-gnu/libm.so
 
+//Dependencies for the target
+PhysicsCore_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libm.so;
+
 //Value Computed by CMake
 Physics_Engine_BINARY_DIR:STATIC=/home/hlouge/PHYSICS_ENGINE/build
 

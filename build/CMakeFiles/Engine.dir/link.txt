@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/Engine.dir/src/main.c.o CMakeFiles/Engine.dir/src/physics.c.o -o Engine  /usr/lib/x86_64-linux-gnu/libSDL2.so -lm 
+/usr/bin/cc CMakeFiles/Engine.dir/src/main.c.o -o Engine  libPhysicsCore.a /usr/lib/x86_64-linux-gnu/libSDL2.so -lm 

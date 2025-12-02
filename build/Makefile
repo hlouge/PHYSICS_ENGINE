@@ -85,6 +85,16 @@ package_source:
 package_source/fast: package_source
 .PHONY : package_source/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
@@ -182,6 +192,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named PhysicsCore
+
+# Build rule for target.
+PhysicsCore: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PhysicsCore
+.PHONY : PhysicsCore
+
+# fast build rule for target.
+PhysicsCore/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsCore.dir/build.make CMakeFiles/PhysicsCore.dir/build
+.PHONY : PhysicsCore/fast
+
+#=============================================================================
 # Target rules for targets named Engine
 
 # Build rule for target.
@@ -193,6 +216,19 @@ Engine: cmake_check_build_system
 Engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/build
 .PHONY : Engine/fast
+
+#=============================================================================
+# Target rules for targets named UnitTests
+
+# Build rule for target.
+UnitTests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 UnitTests
+.PHONY : UnitTests
+
+# fast build rule for target.
+UnitTests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UnitTests.dir/build.make CMakeFiles/UnitTests.dir/build
+.PHONY : UnitTests/fast
 
 src/main.o: src/main.c.o
 .PHONY : src/main.o
@@ -223,7 +259,7 @@ src/physics.o: src/physics.c.o
 
 # target to build an object file
 src/physics.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/src/physics.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsCore.dir/build.make CMakeFiles/PhysicsCore.dir/src/physics.c.o
 .PHONY : src/physics.c.o
 
 src/physics.i: src/physics.c.i
@@ -231,7 +267,7 @@ src/physics.i: src/physics.c.i
 
 # target to preprocess a source file
 src/physics.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/src/physics.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsCore.dir/build.make CMakeFiles/PhysicsCore.dir/src/physics.c.i
 .PHONY : src/physics.c.i
 
 src/physics.s: src/physics.c.s
@@ -239,8 +275,32 @@ src/physics.s: src/physics.c.s
 
 # target to generate assembly for a file
 src/physics.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/src/physics.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsCore.dir/build.make CMakeFiles/PhysicsCore.dir/src/physics.c.s
 .PHONY : src/physics.c.s
+
+tests/test_physics.o: tests/test_physics.c.o
+.PHONY : tests/test_physics.o
+
+# target to build an object file
+tests/test_physics.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UnitTests.dir/build.make CMakeFiles/UnitTests.dir/tests/test_physics.c.o
+.PHONY : tests/test_physics.c.o
+
+tests/test_physics.i: tests/test_physics.c.i
+.PHONY : tests/test_physics.i
+
+# target to preprocess a source file
+tests/test_physics.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UnitTests.dir/build.make CMakeFiles/UnitTests.dir/tests/test_physics.c.i
+.PHONY : tests/test_physics.c.i
+
+tests/test_physics.s: tests/test_physics.c.s
+.PHONY : tests/test_physics.s
+
+# target to generate assembly for a file
+tests/test_physics.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UnitTests.dir/build.make CMakeFiles/UnitTests.dir/tests/test_physics.c.s
+.PHONY : tests/test_physics.c.s
 
 # Help Target
 help:
@@ -256,13 +316,19 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... Engine"
+	@echo "... PhysicsCore"
+	@echo "... UnitTests"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/physics.o"
 	@echo "... src/physics.i"
 	@echo "... src/physics.s"
+	@echo "... tests/test_physics.o"
+	@echo "... tests/test_physics.i"
+	@echo "... tests/test_physics.s"
 .PHONY : help
 
 

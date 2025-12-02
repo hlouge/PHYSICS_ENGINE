@@ -1,6 +1,9 @@
+/home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/PhysicsCore.dir
 /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/Engine.dir
+/home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/UnitTests.dir
 /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/package.dir
 /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/package_source.dir
+/home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/test.dir
 /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/edit_cache.dir
 /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/rebuild_cache.dir
 /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles/list_install_components.dir
