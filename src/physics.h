@@ -21,7 +21,6 @@ typedef struct {
     double historyY[TRAIL_LENGTH];
 } Pointphysics;
 
-// Correction de l'ordre : width (largeur) PUIS height (hauteur)
 void gravity(Pointphysics* object, double dt, int width, int height);
 
-#endif // PHYSICS_H
+#endif  // PHYSICS_H

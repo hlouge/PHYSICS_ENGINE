@@ -6,7 +6,7 @@
 #include <time.h>
 
 #define DT 0.016 // for 60 Hz display
-#define NB_PARTICLES 150 // Nombre de particules
+#define NB_PARTICLES 150 // Nb of particules in the simuilation
 
 void draw_filled_circle(SDL_Renderer* renderer, int cx, int cy, int radius) {
     for (int y = -radius; y <= radius; y++) {
@@ -22,7 +22,7 @@ Config load_config(const char* filename) {
     Config conf = { .initial_x = 400, .initial_y = 100, .initial_vx = 0, .initial_vy = 0, .radius = 10, .gravity_val = 9.81 };
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
-        // NIVEAU WARN : Ce n'est pas bloquant, mais c'est un avertissement
+        // WARN => non blocking issue, but important to log
         SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, "Fichier %s introuvable. Utilisation des valeurs par defaut.", filename);
         return conf;
     }
@@ -43,21 +43,21 @@ Config load_config(const char* filename) {
 }
 
 int main (int argc, char* argv[]) {
-    // Activer tous les niveaux de logs pour voir DEBUG et VERBOSE
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     Config conf = load_config("config.txt");
 
     // Init SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0) return 1;
     if (SDL_Init(SDL_INIT_VIDEO) != 0){
-        // NIVEAU ERROR : Erreur critique
+        // ERROR => critical issue, must be logged
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL Init Error: %s", SDL_GetError());
         return 1;
     }
+
     SDL_Window* window = SDL_CreateWindow("Feu d'Artifice Physics",
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                           conf.window_width, conf.window_height, 0);
-    //Gestion d'erreur window
+    //Window error handling
     if (!window) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL CreateWindow Error: %s", SDL_GetError());
         SDL_Quit();
@@ -67,7 +67,7 @@ int main (int argc, char* argv[]) {
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, render_flags);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); // Important pour la transparence
     
-    //Gestion d'erreur renderer
+    //renderer error handling
     if (!renderer) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL CreateRenderer Error: %s", SDL_GetError());
         SDL_DestroyWindow(window);
@@ -75,7 +75,7 @@ int main (int argc, char* argv[]) {
         return 1;
     }
     
-    printf("Simulation demarree...\n");
+    printf("Simulation...\n");
 
     const double dt = DT;
     int en_cours = 1;
@@ -87,14 +87,12 @@ int main (int argc, char* argv[]) {
     Pointphysics particles[NB_PARTICLES];
     
     for(int i=0; i<NB_PARTICLES; i++) {
-        particles[i].x = 400; // Centre X
-        particles[i].y = 300; // Centre Y
+        particles[i].x = 400; 
+        particles[i].y = 300; 
         
-        // Vitesse aléatoire (Explosion)
+        // (Explosion)
         particles[i].vx = (rand() % 400 - 200) * 2.0; 
         particles[i].vy = (rand() % 400 - 200) * 2.0;
-
-        // Historique à zéro
         for(int h=0; h<TRAIL_LENGTH; h++) {
             particles[i].historyX[h] = 400;
             particles[i].historyY[h] = 300;
@@ -118,7 +116,7 @@ int main (int argc, char* argv[]) {
         }
         
         // 1. NETTOYER L'ECRAN
-        SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255); // Fond gris très foncé
+        SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
         SDL_RenderClear(renderer); 
 
         // 2. BOUCLE SUR TOUTES LES PARTICULES

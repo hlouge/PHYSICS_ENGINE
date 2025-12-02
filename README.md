@@ -29,7 +29,7 @@ Before compiling, ensure you have the following installed:
 * **SDL2 Library** (Development headers)
 * **Cppcheck** (Optional, for static analysis)
 
-# Installing Dependencies (Debian/Ubuntu)
+**Installing Dependencies (Debian/Ubuntu)**   
 
 ```bash
 sudo apt-get update
@@ -90,26 +90,35 @@ cpack
 
 This will generate a portable archive (e.g., Physics_Engine-1.0.0-Linux.zip) containing the binary and configuration.
 
-**Static Code Analysis**
+# Static Code Analysis
 
 To ensure code quality and prevent memory leaks, this project integrates **Cppcheck**. The analysis is automatically hooked into the CMake build system.
 
-### Prerequisites
+**Prerequisites**
+
 You need to have `cppcheck` installed on your machine.
 ```bash
 sudo apt-get install cppcheck
 ```
-How it works
+**How it works**
+To check a single file 
+```bash
+cppcheck main.c
+```
+To check a whole folder recursively
+```bash
+cppcheck src/
+```
 
 Cppcheck runs automatically every time you compile the project. If it detects any bugs, undefined behaviors, or style issues, it will report them directly in your terminal output during the build process.
 Bash
 
-# The analysis runs during this step:
+**The analysis runs during this step:**
 ```bash
 cmake --build build
 ```
 Note: If Cppcheck is not found on your system, CMake will simply skip this step without failing.
 
-**Author**
+# Author
 
-HLouge Student at École des Mines de Saint-Étienne.
+HLouge, Student at École des Mines Saint-Étienne.
