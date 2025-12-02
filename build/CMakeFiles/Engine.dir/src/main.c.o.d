@@ -1,6 +1,6 @@
 CMakeFiles/Engine.dir/src/main.c.o: \
- /home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c \
- /usr/include/stdc-predef.h /usr/include/stdio.h \
+ /home/hlouge/PHYSICS_ENGINE/src/main.c /usr/include/stdc-predef.h \
+ /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -187,8 +187,7 @@ CMakeFiles/Engine.dir/src/main.c.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h \
- /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/SDL2/SDL_misc.h /home/hlouge/PHYSICS_ENGINE/src/physics.h \
+ /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h

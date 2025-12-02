@@ -22,7 +22,8 @@ Config load_config(const char* filename) {
     Config conf = { .initial_x = 400, .initial_y = 100, .initial_vx = 0, .initial_vy = 0, .radius = 10, .gravity_val = 9.81 };
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
-        printf("Attention: Config introuvable.\n");
+        // NIVEAU WARN : Ce n'est pas bloquant, mais c'est un avertissement
+        SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, "Fichier %s introuvable. Utilisation des valeurs par defaut.", filename);
         return conf;
     }
     char key[64];
@@ -37,27 +38,44 @@ Config load_config(const char* filename) {
         else if (strcmp(key, "WIN_H") == 0) fscanf(file, "%d", &conf.window_height);
     }
     fclose(file);
+    SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Config chargee : %dx%d", conf.window_width, conf.window_height);
     return conf;
 }
 
 int main (int argc, char* argv[]) {
+    // Activer tous les niveaux de logs pour voir DEBUG et VERBOSE
+    SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     Config conf = load_config("config.txt");
 
     // Init SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0) return 1;
-
+    if (SDL_Init(SDL_INIT_VIDEO) != 0){
+        // NIVEAU ERROR : Erreur critique
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL Init Error: %s", SDL_GetError());
+        return 1;
+    }
     SDL_Window* window = SDL_CreateWindow("Feu d'Artifice Physics",
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                           conf.window_width, conf.window_height, 0);
-    if (!window) return 1;
-    
+    //Gestion d'erreur window
+    if (!window) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL CreateWindow Error: %s", SDL_GetError());
+        SDL_Quit();
+        return 1;
+    }
     Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, render_flags);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); // Important pour la transparence
     
-    if (!renderer) return 1;
+    //Gestion d'erreur renderer
+    if (!renderer) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL CreateRenderer Error: %s", SDL_GetError());
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 1;
+    }
     
-    printf("Simulation Feu d'Artifice demarree...\n");
+    printf("Simulation demarree...\n");
 
     const double dt = DT;
     int en_cours = 1;
@@ -132,6 +150,11 @@ int main (int argc, char* argv[]) {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Tête blanche brillante
             draw_filled_circle(renderer, (int)particles[p].x, (int)particles[p].y, 4);
         }
+
+        // Gérer les événements (ex: fermer la fenêtre)
+        if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE) {
+                SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, "Reset de l'explosion demande par l'utilisateur.");
+            }
 
         // 3. AFFICHER LE RESULTAT
         SDL_RenderPresent(renderer);

@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/hlouge/Desktop/PHYSICS_ENGINE/src/main.c" "CMakeFiles/Engine.dir/src/main.c.o" "gcc" "CMakeFiles/Engine.dir/src/main.c.o.d"
-  "/home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c" "CMakeFiles/Engine.dir/src/physics.c.o" "gcc" "CMakeFiles/Engine.dir/src/physics.c.o.d"
+  "/home/hlouge/PHYSICS_ENGINE/src/main.c" "CMakeFiles/Engine.dir/src/main.c.o" "gcc" "CMakeFiles/Engine.dir/src/main.c.o.d"
+  "/home/hlouge/PHYSICS_ENGINE/src/physics.c" "CMakeFiles/Engine.dir/src/physics.c.o" "gcc" "CMakeFiles/Engine.dir/src/physics.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

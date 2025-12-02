@@ -1,7 +1,6 @@
 CMakeFiles/Engine.dir/src/physics.c.o: \
- /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.c \
- /usr/include/stdc-predef.h \
- /home/hlouge/Desktop/PHYSICS_ENGINE/src/physics.h /usr/include/math.h \
+ /home/hlouge/PHYSICS_ENGINE/src/physics.c /usr/include/stdc-predef.h \
+ /home/hlouge/PHYSICS_ENGINE/src/physics.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \

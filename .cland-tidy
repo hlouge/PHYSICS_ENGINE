@@ -1,0 +1,18 @@
+---
+# Nous activons les vérifications pour:
+# - la lisibilité (readability)
+# - les bugs potentiels (bugprone)
+# - la performance (performance)
+# - les analyses statiques du compilateur (clang-analyzer)
+# - divers (misc)
+Checks: 'readability-*,bugprone-*,performance-*,clang-analyzer-*,misc-*,-readability-uppercase-literal-suffix,-readability-magic-numbers'
+
+# Traiter tous les avertissements comme des erreurs (pour forcer la qualité)
+WarningsAsErrors: '*'
+
+# Vérifier aussi les headers dans src/
+HeaderFilterRegex: 'src/.*'
+
+# Style de formatage (optionnel)
+FormatStyle: 'file'
+...
