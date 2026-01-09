@@ -1,0 +1,40 @@
+name: Matrix Build Test
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      # --- C'EST ICI QUE SE TROUVE LA MATRICE (The "Matrix") ---
+      matrix:
+        # On va lancer le job 3 fois en parallèle avec 3 versions de CMake
+        cmake-version: ["3.18.x", "3.22.x", "3.25.x"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # 1. Installer SDL2 (requis pour la compilation du Main)
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libsdl2-dev
+
+    # 2. Installer la version spécifique de CMake demandée par la matrice
+    - name: Setup CMake ${{ matrix.cmake-version }}
+      uses: jwlawrence/cmake-action@v1
+      with:
+        cmake-version: ${{ matrix.cmake-version }}
+
+    # 3. Build & Test
+    - name: Configure
+      run: cmake -B build
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Test
+      run: |
+        cd build
+        ctest --output-on-failure
