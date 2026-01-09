@@ -1,0 +1,47 @@
+name: Deploy Documentation
+
+# Condition : Uniquement sur la branche master (ou main selon votre config)
+on:
+  push:
+    branches: ["master", "main"]
+
+# Permissions nécessaires pour modifier GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy-docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 1. Installer Doxygen
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+
+      # 2. Générer la doc (lit le Doxyfile qu'on a créé étape 1)
+      - name: Generate Documentation
+        run: doxygen Doxyfile
+
+      # 3. Préparer l'upload (Le dossier 'docs/html' est créé par Doxygen)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'docs/html'
+
+      # 4. Déployer sur GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
