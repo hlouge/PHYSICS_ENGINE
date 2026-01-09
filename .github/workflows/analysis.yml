@@ -1,0 +1,44 @@
+name: Code Quality & Security
+
+# Déclencheur : À chaque push (commit) et chaque Pull Request
+on: [push, pull_request]
+
+jobs:
+  # JOB 1: Analyse du code C (Smells & Style)
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Cppcheck
+        run: sudo apt-get update && sudo apt-get install -y cppcheck
+
+      - name: Run Static Analysis (Cppcheck)
+        # --enable=style,warning,performance : Active les vérifications de style et smells
+        # --error-exitcode=1 : Fait échouer le job si une erreur est trouvée
+        # -I src/ : Indique où sont les headers (.h)
+        # src/ tests/ : Les dossiers à analyser
+        run: |
+          cppcheck --enable=style,warning,performance,portability \
+                   --suppress=missingIncludeSystem \
+                   --error-exitcode=1 \
+                   --inline-suppr \
+                   -I src/ \
+                   src/ tests/
+
+  # JOB 2: Analyse de Sécurité (Secrets)
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Important pour scanner tout l'historique
+
+      - name: Gitleaks Detection
+        # Gitleaks est l'outil standard pour détecter les secrets dans git
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

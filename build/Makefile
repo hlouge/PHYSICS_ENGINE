@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hlouge/PHYSICS_ENGINE
+CMAKE_SOURCE_DIR = /home/hlouge/Desktop/PHYSICS_ENGINE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hlouge/PHYSICS_ENGINE/build
+CMAKE_BINARY_DIR = /home/hlouge/Desktop/PHYSICS_ENGINE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/hlouge/PHYSICS_ENGINE/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/hlouge/Desktop/PHYSICS_ENGINE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -162,9 +162,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles /home/hlouge/PHYSICS_ENGINE/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hlouge/Desktop/PHYSICS_ENGINE/build/CMakeFiles /home/hlouge/Desktop/PHYSICS_ENGINE/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hlouge/PHYSICS_ENGINE/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hlouge/Desktop/PHYSICS_ENGINE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

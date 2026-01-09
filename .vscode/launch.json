@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GDB Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/path/to/your/program", // Replace with your program's path
+            "args": [], // Command line arguments (if any)
+            "stopAtEntry": false, // Set to true if you want to start debugging at the entry point
+            "cwd": "${workspaceFolder}", // Working directory
+            "environment": [],
+            "externalConsole": false, // Set to true if you want an external console
+            "MIMode": "gdb", // Ensure GDB as the debugger
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build", // Must define a build task to compile your program
+        }
+    ]
+}

@@ -20,8 +20,11 @@ if(CPPCHECK_EXE)
     set_target_properties(Engine PROPERTIES C_CPPCHECK "${CPPCHECK_EXE};--enable=warning,performance,portability,style;--suppress=missingIncludeSystem")
 endif()
 
-# --- 4. TESTS UNITAIRES (New!) ---
+# --- 4. TESTS UNITAIRES ---
 enable_testing()
+add_executable(UnitTests tests/test_physics.c)
+target_link_libraries(UnitTests PRIVATE PhysicsCore)
+add_test(NAME PhysicsTest COMMAND UnitTests)
 
 # On crée un exécutable dédié aux tests
 add_executable(UnitTests tests/test_physics.c)
