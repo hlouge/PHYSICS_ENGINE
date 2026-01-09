@@ -1,0 +1,74 @@
+name: Publish Release
+
+# Déclencheur : Uniquement quand on pousse un tag commençant par 'v' (ex: v1.0.0)
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    # Permission nécessaire pour créer une Release sur GitHub
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Indispensable pour récupérer l'historique git pour le changelog
+
+      # 1. Installation des dépendances
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y libsdl2-dev
+
+      # 2. Build
+      - name: Configure CMake
+        run: cmake -B build
+
+      - name: Build Project
+        run: cmake --build build
+
+      # 3. Tests (Arrêt immédiat si échec)
+      - name: Run Tests
+        run: |
+          cd build
+          ctest --output-on-failure
+
+      # 4. Packaging (Création du ZIP)
+      # On utilise CPack (déjà configuré dans votre CMakeLists.txt)
+      - name: Create Package
+        run: |
+          cd build
+          cpack -G ZIP
+          # On renomme le fichier généré pour qu'il ait un nom fixe facile à retrouver
+          mv *.zip PhysicsEngine-Linux.zip
+
+      # 5. Génération du Changelog
+      # On liste tous les commits entre le tag précédent et le tag actuel
+      - name: Generate Changelog
+        id: changelog
+        run: |
+          # Essaye de trouver le tag précédent, sinon prend tout l'historique
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          
+          echo "Generating changelog..."
+          if [ -z "$PREVIOUS_TAG" ]; then
+            git log --pretty=format:"* %s (%h)" > RELEASE_NOTES.md
+          else
+            echo "Changes since $PREVIOUS_TAG:" > RELEASE_NOTES.md
+            git log --pretty=format:"* %s (%h)" $PREVIOUS_TAG..HEAD >> RELEASE_NOTES.md
+          fi
+          # Affiche pour debug
+          cat RELEASE_NOTES.md
+
+      # 6. Création de la Release GitHub et Upload des fichiers
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: RELEASE_NOTES.md   # Utilise le changelog généré
+          files: |
+            build/PhysicsEngine-Linux.zip # Upload le zip contenant l'exécutable
+          draft: false
+          prerelease: false
